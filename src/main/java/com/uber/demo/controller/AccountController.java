@@ -25,9 +25,14 @@ public class AccountController {
         return "welcome"; //view
     }
 
-    @GetMapping("/login")
-    private Account login(String username, String password){
-        return accountService.login(username,password);
+    @PostMapping("/login")
+    private ResponseEntity<Account> login(@RequestBody Account account){
+        Account res=accountService.login(account);
+        if(res==null){
+             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }else {
+            return new ResponseEntity<>(account, HttpStatus.OK);
+        }
     }
 
     @GetMapping("/all")

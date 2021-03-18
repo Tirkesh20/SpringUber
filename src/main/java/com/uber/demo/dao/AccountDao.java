@@ -34,8 +34,8 @@ public class AccountDao {
         this.namedParameterJdbcTemplate=namedParameterJdbcTemplate;
     }
 
-    public Account accountCheck(String username, String password) {
-        return jdbcTemplate.query("SELECT * FROM account WHERE username=? and password=?", new Object[]{username,password}, new BeanPropertyRowMapper<>(Account.class))
+    public Account accountCheck(Account account) {
+        return jdbcTemplate.query("SELECT * FROM account WHERE username=? and password=?", new Object[]{account.getUsername(),account.getPassword()}, new BeanPropertyRowMapper<>(Account.class))
                 .stream().findAny().orElse(null);
     }
 

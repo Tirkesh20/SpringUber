@@ -1,10 +1,7 @@
 package com.uber.demo.beans;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.uber.demo.enums.DriverStatus;
+
 import com.uber.demo.enums.UserType;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Min;
@@ -32,9 +29,6 @@ public class Account {
 
     private UserType userType = UserType.CLIENT;
 
-    @JsonIgnore
-    private DriverStatus status;
-
     public Account(){
 
     }
@@ -48,13 +42,7 @@ public class Account {
         this.password=password;
         this.userType=userType;
     }
-    public DriverStatus getStatus() {
-        return status;
-    }
 
-    public void setStatus(DriverStatus status) {
-        this.status = status;
-    }
 
     public long getId() {
         return id;
@@ -64,13 +52,12 @@ public class Account {
         this.id = id;
     }
 
-    public UserType[] getType() {
-        return UserType.values();
+    public UserType getType() {
+        return userType;
     }
 
     public String getFirstName() {
         return firstName;
-
     }
 
     public void setFirstName(String firstName) {
@@ -84,7 +71,6 @@ public class Account {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-
     }
 
     public String getPassword() {

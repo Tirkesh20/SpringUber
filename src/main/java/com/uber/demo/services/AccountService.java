@@ -5,7 +5,10 @@ package com.uber.demo.services;
 import com.uber.demo.beans.Account;
 import com.uber.demo.dao.AccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 @Service
@@ -25,8 +28,8 @@ public class AccountService extends ServiceInterface<Account>{
         return dao.getAccount(id);
     }
 
-    public Account login(String username,String password){
-        return dao.accountCheck(username,password);
+    public Account login( Account account){
+        return dao.accountCheck(account);
     }
     public Account create(Account entity){
         return dao.saveAccount(entity);
