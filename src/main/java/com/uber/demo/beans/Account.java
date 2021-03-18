@@ -1,5 +1,6 @@
 package com.uber.demo.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uber.demo.enums.DriverStatus;
 import com.uber.demo.enums.UserType;
 import org.hibernate.validator.constraints.Email;
@@ -12,31 +13,32 @@ import javax.validation.constraints.Size;
 
 @Component
 public class Account {
+
     private long id;
 
-    @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String firstName;
 
-    @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-
     private String lastName;
+
     @Min(value = 7, message = "Password should be greater than 7")
     private String password;
 
-    @NotEmpty(message = "Username should not be empty")
     @Size(min = 2, max = 30, message = "Username should be between 2 and 30 characters")
     private String userName;
 
-    @NotEmpty(message = "Email should not be empty")
-    @Email(message = "Email should be valid")
     private String email;
-    private UserType userType;
+
+    private UserType userType = UserType.CLIENT;
+
+    @JsonIgnore
     private DriverStatus status;
+
     public Account(){
 
     }
+
     public Account(long id,String firstName,String lastName,String email,String password,String userName,UserType userType ){
         this.id=id;
         this.firstName=firstName;
@@ -110,6 +112,7 @@ public class Account {
     }
 
     public UserType getUserType(){return userType ;}
+
     public void setUserType(UserType userType) {
         this.userType = userType;
     }

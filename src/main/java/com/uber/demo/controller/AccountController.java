@@ -3,6 +3,8 @@ package com.uber.demo.controller;
 import com.uber.demo.beans.Account;
 import com.uber.demo.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +24,10 @@ public class AccountController {
     public String main() {
         return "welcome"; //view
     }
+
     @GetMapping("/login")
     private Account login(String username, String password){
         return accountService.login(username,password);
-    }
-    @GetMapping("/register")
-    public String string(){
-        return "/register";
     }
 
     @GetMapping("/all")
@@ -36,14 +35,17 @@ public class AccountController {
     public List<Account> readAll() {
         return accountService.readAll();
     }
+
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", accountService.read(id));
         return "/2";
     }
-    @PostMapping("/create")
-    public Account create(Account account){
-        return accountService.create(account);
+
+    @PostMapping("/register")
+    public ResponseEntity<Account> create(@RequestBody Account account){
+        Account res = accountService.create(account);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
     @GetMapping("/account/read/{id}")
