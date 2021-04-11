@@ -25,4 +25,5 @@ public class TransactionBatchPreparedStatement implements BatchPreparedStatement
     public int getBatchSize() {
         return 4;
     }
+
 }

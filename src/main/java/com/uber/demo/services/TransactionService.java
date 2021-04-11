@@ -32,7 +32,8 @@ public class TransactionService extends ServiceInterface<Transaction>{
     }
 
     @Override
-    public Transaction read(long id){return transactionDao.getTransaction(id);
+    public Transaction read(long id){
+        return transactionDao.getTransaction(id);
     }
 
     @Override

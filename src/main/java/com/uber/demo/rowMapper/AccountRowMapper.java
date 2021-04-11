@@ -1,7 +1,6 @@
 package com.uber.demo.rowMapper;
 
 import com.uber.demo.beans.Account;
-import com.uber.demo.enums.UserType;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -18,7 +17,7 @@ public class AccountRowMapper implements RowMapper<Account> {
         account.setUserName(rs.getString("username"));
         account.setEmail(rs.getString("email"));
         account.setPassword(rs.getString("password"));
-        account.setUserType(UserType.valueOf(rs.getString("user_type")));
+        account.setUserType(rs.getString("user_type"));
         return account;
     }
 

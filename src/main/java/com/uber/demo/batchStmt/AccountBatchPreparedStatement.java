@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class AccountBatchPreparedStatement implements BatchPreparedStatementSetter {
 
-    private Account account;
+    private final Account account;
 
     public AccountBatchPreparedStatement(Account account) {
         this.account = account;

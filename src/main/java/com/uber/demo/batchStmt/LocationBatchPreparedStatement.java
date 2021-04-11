@@ -27,4 +27,5 @@ public class LocationBatchPreparedStatement implements BatchPreparedStatementSet
     public int getBatchSize() {
         return 6;
     }
+
 }

@@ -1,7 +1,6 @@
 package com.uber.demo.beans;
 
 
-import com.uber.demo.enums.UserType;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Min;
@@ -27,13 +26,13 @@ public class Account {
 
     private String email;
 
-    private UserType userType = UserType.CLIENT;
+    private String userType;
 
     public Account(){
 
     }
 
-    public Account(long id,String firstName,String lastName,String email,String password,String userName,UserType userType ){
+    public Account(long id,String firstName,String lastName,String email,String password,String userName,String userType ){
         this.id=id;
         this.firstName=firstName;
         this.lastName=lastName;
@@ -52,7 +51,7 @@ public class Account {
         this.id = id;
     }
 
-    public UserType getType() {
+    public String getType() {
         return userType;
     }
 
@@ -97,9 +96,9 @@ public class Account {
         this.email = email;
     }
 
-    public UserType getUserType(){return userType ;}
+    public String getUserType(){return userType ;}
 
-    public void setUserType(UserType userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 

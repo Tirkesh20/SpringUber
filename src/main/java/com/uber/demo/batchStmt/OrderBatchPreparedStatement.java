@@ -28,4 +28,5 @@ public class OrderBatchPreparedStatement implements BatchPreparedStatementSetter
     public int getBatchSize() {
         return 6;
     }
+
 }

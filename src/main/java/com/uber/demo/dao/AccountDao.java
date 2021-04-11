@@ -5,18 +5,12 @@ import com.uber.demo.beans.Account;
 import com.uber.demo.preparedStmtCallBack.AccountCallBack;
 import com.uber.demo.rowMapper.AccountRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +18,7 @@ import java.util.Map;
 @Component
 public class AccountDao {
     private final JdbcTemplate jdbcTemplate;
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private SimpleJdbcInsert simpleJdbcInsert;
-    private SimpleJdbcCall simpleJdbcCall;
+    private  final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
     public AccountDao(JdbcTemplate jdbcTemplate,NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
@@ -77,7 +69,7 @@ public class AccountDao {
         map.put("username", account.getUsername());
         map.put("email", account.getEmail());
         map.put("password", account.getPassword());
-        map.put("user_type", account.getUserType().toString());
+        map.put("user_type", account.getUserType());
         namedParameterJdbcTemplate.execute(query, map,new AccountCallBack());
         return account;
     }

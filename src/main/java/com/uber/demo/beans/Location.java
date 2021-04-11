@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class Location {
     private long id;
-    @NotEmpty(message = "Name should not be empty")
     private double lat;
     private double lng;
     private FromTo fromTo;

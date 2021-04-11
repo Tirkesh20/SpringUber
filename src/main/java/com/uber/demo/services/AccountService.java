@@ -31,10 +31,10 @@ public class AccountService extends ServiceInterface<Account>{
     public Account login( Account account){
         return dao.accountCheck(account);
     }
+
     public Account create(Account entity){
         return dao.saveAccount(entity);
     }
-
 
     @Override
     public Account delete(long id) {
